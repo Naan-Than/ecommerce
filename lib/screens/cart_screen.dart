@@ -11,7 +11,7 @@ class CartScreen extends StatefulWidget {
 
 class _CartScreenState extends State<CartScreen> {
   List<CartResponse> cartProductList = [];
-  late double count;
+  late double totalAmount;
   fetchData() async {
     String uid = FirebaseAuth.instance.currentUser!.uid.toString();
     var documentSnapshot =
@@ -24,24 +24,9 @@ class _CartScreenState extends State<CartScreen> {
     setState(() {
       cartProductList.addAll(data);
       for (var element in cartProductList) {
-        count= element.quantity;
+        totalAmount = totalAmount + (element.price * element.quantity);
       }
     });
-  }
-  void price(){
-  }
-  addQuantity() async {
-    if (count == 1 && count > 1) {
-      return count++;
-    }
-  }
-
-  Future<double> removeQuantity() async {
-    if (count == 1) {
-      return count;
-    } else {
-      return count--;
-    }
   }
 
   @override
@@ -109,7 +94,7 @@ class _CartScreenState extends State<CartScreen> {
                                   padding:
                                   const EdgeInsets.symmetric(horizontal: 8.0),
                                   child: Text(
-                                    (cartProductList[index].price * count).toString(),
+                                    (cartProductList[index].price * cartProductList[index].quantity).toString(),
                                     style: const TextStyle(
                                         color: Colors.black54, fontSize: 16),
                                   ),
@@ -163,8 +148,8 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(
               height: 4.0,
             ),
-            const Text(
-              "\$6000",
+            Text(
+              "\$$totalAmount",
               style: TextStyle(
                   color: Colors.pinkAccent,
                   fontWeight: FontWeight.bold,
