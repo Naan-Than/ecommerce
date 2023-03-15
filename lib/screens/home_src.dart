@@ -1,10 +1,11 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:ecommerce/models/ProductsResponse.dart';
+import 'package:ecommerce/screens/cart_screen.dart';
+import 'package:ecommerce/screens/drawer.dart';
+import 'package:ecommerce/screens/product_screen.dart';
+import 'package:ecommerce/utility.dart';
 import 'package:flutter/material.dart';
-import 'package:untitled/model/productsResponse.dart';
-import 'package:untitled/screen/cart_screen.dart';
-import 'package:untitled/screen/drawer.dart';
-import 'package:untitled/screen/product_screen.dart';
-import 'package:untitled/utility.dart';
+
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
