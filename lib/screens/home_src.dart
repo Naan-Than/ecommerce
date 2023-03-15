@@ -1,54 +1,49 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:ecommerce/screens/cart_screen.dart';
-import 'package:ecommerce/screens/drawer.dart';
-import 'package:ecommerce/screens/product_screen.dart';
-import 'package:ecommerce/utility.dart';
 import 'package:flutter/material.dart';
-import '../models/ProductsResponse.dart';
+import 'package:untitled/model/productsResponse.dart';
+import 'package:untitled/screen/cart_screen.dart';
+import 'package:untitled/screen/drawer.dart';
+import 'package:untitled/screen/product_screen.dart';
+import 'package:untitled/utility.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({Key? key}) : super(key: key);
-
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
 
 class _HomeScreenState extends State<HomeScreen> {
   List<ProductsResponse> productList = [];
-
-  List<ProductsResponse> newProductList = [];
-
   Color textColor = Colors.pinkAccent;
-  List<String> chipList = [
+
+  List<String> category = [
     'All',
-    'Electronics',
-    'Appliances',
+    'Electronics And Appliances',
     'Shirt',
-    'Men',
+    'Man',
     'Cosmetics',
+    'more'
   ];
 
   List<ProductsResponse> currentProductList = [];
   fetchData() async {
     var documentSnapshot =
-        await FirebaseFirestore.instance.collection('Products').get();
+    await FirebaseFirestore.instance.collection('Products').get();
     var data =
-        documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
-    print(data.length);
+    documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
     setState(() {
       productList.addAll(data);
     });
   }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: const Drawer(
-        child: DrawerScreen(),
-      ),
+      drawer: const Drawer(child: DrawerScreen()),
       appBar: AppBar(
         elevation: 0.2,
         backgroundColor: Colors.white,
-        iconTheme: const IconThemeData(color: Colors.black54),
+        iconTheme: const IconThemeData(color: Colors.black45),
         actions: [
           Stack(
             children: [
@@ -57,7 +52,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: Icon(
                   Icons.notifications_none,
                   color: Colors.black54,
-                  size: 28,
+                  size: 26,
                 ),
               ),
               Padding(
@@ -89,9 +84,10 @@ class _HomeScreenState extends State<HomeScreen> {
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
         child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 16.0, vertical: 10.0),
+          padding: const EdgeInsets.all(16.0),
           child: Column(
             children: [
+              const SizedBox(height: 1.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -111,7 +107,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         border: InputBorder.none,
                         label: Text(
                           "Search",
-                          style: TextStyle(fontSize: 18),
+                          style: TextStyle(fontSize: 22),
                         ),
                         prefixIcon: Icon(
                           Icons.search,
@@ -149,8 +145,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Expanded(
                       child: Divider(
-                    thickness: 1,
-                  )),
+                        thickness: 1,
+                      )),
                   Text(
                     "  See all",
                     style: TextStyle(
@@ -161,7 +157,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
               const SizedBox(
-                height: 12.0,
+                height: 18.0,
               ),
               FutureBuilder(
                   future: fetchData(),
@@ -175,12 +171,14 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             child: Utility.customCard(productList[index]),
-                            onTap: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context)=>ProductScreen(productList: productList[index])));
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductScreen(
+                                          productList: productList[index])));
                             },
                           );
-
                         },
                       ),
                     );
@@ -199,8 +197,8 @@ class _HomeScreenState extends State<HomeScreen> {
                   ),
                   const Expanded(
                       child: Divider(
-                    thickness: 1,
-                  )),
+                        thickness: 1,
+                      )),
                   Text(
                     "  See all",
                     style: TextStyle(
@@ -218,20 +216,29 @@ class _HomeScreenState extends State<HomeScreen> {
                 child: ListView.builder(
                     shrinkWrap: true,
                     scrollDirection: Axis.horizontal,
-                    itemCount: chipList.length,
+                    itemCount: category.length,
                     itemBuilder: (context, index) {
                       return Chip(
                           backgroundColor: Colors.grey.shade200,
-                          label: Text(chipList[index]));
+                          label: Text(category[index]));
                     }),
               ),
               const SizedBox(
                 height: 0,
               ),
+              //stream: FirebaseFirestore.instance.collection('products').snapshots(),
+              //     builder: (context, snapshot) {
+              //         if (snapshot.hasData) {
+              //         return ListView.builder(
+              //             itemCount: snapshot.data!.docs.length,
+              //             itemBuilder: (context, index) {
+              //                 DocumentSnapshot doc = snapshot.data!.docs[index];
+              //            DocumentSnapshot product=snapshot.data.doc
+              //
+              //                 return Text(doc['name']);
               FutureBuilder(
                   future: fetchData(),
-                  builder:
-                      (context,snapshot){
+                  builder: (context, snapshot) {
                     return SizedBox(
                       height: 220,
                       child: ListView.builder(
@@ -241,11 +248,32 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemBuilder: (context, index) {
                           return InkWell(
                             child: Utility.customCard(productList[index]),
-                            onTap: (){
-                              Navigator.push(context,
-                                  MaterialPageRoute(builder: (context)=>ProductScreen(productList: productList[index])));
+                            onTap: () {
+                              Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                      builder: (context) => ProductScreen(
+                                          productList: productList[index])));
                             },
                           );
+                        },
+                      ),
+                    );
+                  }),
+              const SizedBox(
+                height: 10,
+              ),
+              FutureBuilder(
+                  future: fetchData(),
+                  builder: (context, snapshot) {
+                    return SizedBox(
+                      height: 220,
+                      child: ListView.builder(
+                        shrinkWrap: true,
+                        itemCount: productList.length,
+                        scrollDirection: Axis.horizontal,
+                        itemBuilder: (context, index) {
+                          return Utility.customCard(productList[index]);
                         },
                       ),
                     );
