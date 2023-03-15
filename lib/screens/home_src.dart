@@ -23,7 +23,7 @@ class _HomeScreenState extends State<HomeScreen> {
     'Shirt',
     'Man',
     'Cosmetics',
-    'more'
+    'moree'
   ];
 
   List<ProductsResponse> currentProductList = [];
