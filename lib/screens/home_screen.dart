@@ -30,7 +30,7 @@ class _HomeScreensState extends State<HomeScreens> {
             padding: const EdgeInsets.symmetric(horizontal: 18.0),
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
+              children: const [
                 Icon(Icons.notifications, color: Colors.black54, size: 28),
                 SizedBox(
                   width: 16,
@@ -48,10 +48,10 @@ class _HomeScreensState extends State<HomeScreens> {
       body: SingleChildScrollView(
         child: Column(
           children: [
-            SizedBox(
+            const SizedBox(
               height: 16,
             ),
-            SizedBox(height: 16),
+            const SizedBox(height: 16),
             Padding(
               padding: const EdgeInsets.only(left: 16.0),
               child: Row(
@@ -65,7 +65,7 @@ class _HomeScreensState extends State<HomeScreens> {
                           color: Colors.grey.withOpacity(0.3), width: 1),
                     ),
                     child: TextFormField(
-                      decoration: InputDecoration(
+                      decoration: const InputDecoration(
                         fillColor: Colors.grey,
                         focusColor: Colors.grey,
                         border: InputBorder.none,
@@ -75,7 +75,7 @@ class _HomeScreensState extends State<HomeScreens> {
                       keyboardType: TextInputType.multiline,
                     ),
                   ),
-                  SizedBox(
+                  const SizedBox(
                     width: 16,
                   ),
                   Container(
@@ -86,16 +86,16 @@ class _HomeScreensState extends State<HomeScreens> {
                       border: Border.all(
                           color: Colors.grey.withOpacity(0.3), width: 1),
                     ),
-                    child: Icon(Icons.filter_alt_outlined,color: Colors.black54,),),
+                    child: const Icon(Icons.filter_alt_outlined,color: Colors.black54,),),
                 ],
               ),
             ),
-            SizedBox(height: 16,),
+            const SizedBox(height: 16,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Expanded(
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Text("TRENDING PRODUCTS ",style:TextStyle(color: Colors.black,),),
                     Divider(thickness: 2,color: Colors.grey,),
                     Text("See all",style:TextStyle(color: Colors.redAccent,),),
@@ -114,12 +114,12 @@ class _HomeScreensState extends State<HomeScreens> {
                 itemCount: 10,
               ),
             ),
-            SizedBox(height: 16,),
+            const SizedBox(height: 16,),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 18.0),
               child: Expanded(
                 child: Row(mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                  children: [
+                  children: const [
                     Text("POPULAR CATEGORIES ",style:TextStyle(color: Colors.black,),),
                     Divider(thickness: 2,color: Colors.grey,),
                     Text("See all",style:TextStyle(color: Colors.redAccent,),),
@@ -127,7 +127,7 @@ class _HomeScreensState extends State<HomeScreens> {
                 ),
               ),
             ),
-            SizedBox(height: 16,),
+            const SizedBox(height: 16,),
             SizedBox(
               child: ListView.builder(
                   shrinkWrap: true,
@@ -160,10 +160,10 @@ class _HomeScreensState extends State<HomeScreens> {
         mainAxisAlignment: MainAxisAlignment.spaceAround,
         children: [
           Image.network("https://trimurtikitchenequipmentkop.com/images/products/furniture/chaire.png", height: 100, width: 160,),
-          Text("Onyx Ortho Chair "),
+          const Text("Onyx Ortho Chair "),
           Row(
             mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
+            children: const [
               Text("3500"),
               SizedBox(width: 16,),
               CircleAvatar(

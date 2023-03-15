@@ -1,5 +1,6 @@
 import 'package:animated_notch_bottom_bar/animated_notch_bottom_bar/animated_notch_bottom_bar.dart';
 import 'package:ecommerce/screens/home_src.dart';
+import 'package:ecommerce/screens/product_gridview.dart';
 import 'package:ecommerce/screens/profile_Screen.dart';
 import 'package:flutter/material.dart';
 
@@ -14,7 +15,7 @@ class _HomePageState extends State<HomePage> {
   final _pageController = PageController(initialPage: 1);
   int maxCount = 3;
   final List<Widget> bottomBarPages = [
-    const ProfileScreen(),
+    const ProductGridView(),
     const HomeScreen(),
     const ProfileScreen(),
   ];

@@ -150,7 +150,7 @@ class _CartScreenState extends State<CartScreen> {
             ),
             Text(
               "\$$totalAmount",
-              style: TextStyle(
+              style: const TextStyle(
                   color: Colors.pinkAccent,
                   fontWeight: FontWeight.bold,
                   letterSpacing: 0.8,
