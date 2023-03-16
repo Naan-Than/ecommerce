@@ -27,7 +27,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
     }).then((authUser){
       Navigator.push(context,
-          MaterialPageRoute(builder: (context)=>const HomePage()));
+          MaterialPageRoute(builder: (context)=>HomePage()));
 
     });
     String uid=FirebaseAuth.instance.currentUser!.uid.toString();
@@ -76,7 +76,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                     child: Container(
                       height: MediaQuery.of(context).size.height * .75,
                       width: MediaQuery.of(context).size.width,
-                      decoration: const BoxDecoration(
+                      decoration: BoxDecoration(
                         color: Colors.white,
                         borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(30.0),
@@ -85,13 +85,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       ),
                       child: Column(
                         children: [
-                          const SizedBox(
+                          SizedBox(
                             height: 12.0,
                           ),
                           Padding(
                             padding: const EdgeInsets.all(20.0),
                             child: Row(
-                              children: const [
+                              children: [
                                 Expanded(
                                     child: Divider(
                                   thickness: 1,
@@ -112,7 +112,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                               ],
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 1,
                           ),
                           Padding(
@@ -125,13 +125,12 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     false,
                                     null,
                                     "Bruce wayne", (useName) {
-                                  if (useName.isEmpty) {
+                                  if (useName.isEmpty)
                                     return "Please Enter your Name";
-                                  } else {
+                                  else
                                     return null;
-                                  }
                                 }, userName),
-                                const SizedBox(
+                                SizedBox(
                                   height: 12,
                                 ),
                                 TextInputField.customTextForm(
@@ -145,7 +144,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   else
                                     return null;
                                 },email),
-                                const SizedBox(
+                                SizedBox(
                                   height: 12,
                                 ),
                                 TextInputField.customTextForm(
@@ -159,14 +158,14 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                   else
                                     return null;
                                 },mbl),
-                                const SizedBox(
+                                SizedBox(
                                   height: 12,
                                 ),
                                 TextInputField.customTextForm(
                                     TextInputType.text,
                                     "Password",
                                     true,
-                                    const Icon(Icons.remove_red_eye_outlined),
+                                    Icon(Icons.remove_red_eye_outlined),
                                     null, (pass) {
                                   if (pass.isEmpty)
                                     return "Please Enter Password";
@@ -174,13 +173,13 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                     return "Password lenth is low";
                                   return null;
                                 },password),
-                                const SizedBox(
+                                SizedBox(
                                   height: 12,
                                 ),
                               ],
                             ),
                           ),
-                          const SizedBox(
+                          SizedBox(
                             height: 8,
                           ),
                           InkWell(

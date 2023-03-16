@@ -1,13 +1,15 @@
+
 import 'package:ecommerce/models/ProductsResponse.dart';
+import 'package:ecommerce/screens/product_screen.dart';
 import 'package:flutter/material.dart';
 
 class Utility {
-  static customCard(ProductsResponse productsResponse) {
+  static customCard(ProductsResponse productsResponse,listItem,page) {
     Color textColor=Colors.redAccent;
     return InkWell(
       onTap: () {
-        /// Implement view page
-        ///
+        Navigator.push(page,
+            MaterialPageRoute(builder: (context)=>ProductScreen(productList: listItem)));
       },
       child: Card(
         child: Container(

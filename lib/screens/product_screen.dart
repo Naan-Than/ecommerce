@@ -2,7 +2,6 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-
 import '../models/ProductsResponse.dart';
 
 class ProductScreen extends StatefulWidget {
@@ -29,6 +28,7 @@ class _ProductScreenState extends State<ProductScreen> {
       'title': widget.productList.name,
       'price': widget.productList.price,
       'quantity': quantity,
+      'image':widget.productList.image,
       'pId': widget.productList.id,
     });
   }
@@ -38,7 +38,7 @@ class _ProductScreenState extends State<ProductScreen> {
     }
   }
 
-  Future<int> removeQuantity() async {
+  removeQuantity() async {
     if (quantity == 1) {
       return quantity;
     } else {
@@ -86,6 +86,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     IconButton(
                       onPressed: () {
                         removeQuantity();
+                        print("$quantity");
                         setState(() {});
                       },
                       icon: const Icon(Icons.remove_circle_outline,
@@ -98,6 +99,7 @@ class _ProductScreenState extends State<ProductScreen> {
                     IconButton(
                       onPressed: () {
                         addQuantity();
+                        print("$quantity");
                         setState(() {});
                       },
                       icon: const Icon(Icons.add_circle_outline,
@@ -135,6 +137,8 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               onTap: () {
                 cartAdd();
+                print("$quantity");
+
               },
             ),
           ],

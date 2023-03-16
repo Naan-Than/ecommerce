@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/models/ProductsResponse.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
 import 'package:ecommerce/screens/drawer.dart';
-import 'package:ecommerce/screens/product_screen.dart';
 import 'package:ecommerce/utility.dart';
 import 'package:flutter/material.dart';
 
@@ -23,16 +22,14 @@ class _HomeScreenState extends State<HomeScreen> {
     'Shirt',
     'Man',
     'Cosmetics',
-    'moree'
+    'more'
   ];
 
   List<ProductsResponse> currentProductList = [];
   fetchData() async {
     var documentSnapshot =
     await FirebaseFirestore.instance.collection('Products').get();
-    var data =
-    documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
-    print(data.length);
+    var data = documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
     setState(() {
       productList.addAll(data);
     });
@@ -171,16 +168,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: productList.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return InkWell(
-                            child: Utility.customCard(productList[index]),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ProductScreen(
-                                          productList: productList[index])));
-                            },
-                          );
+                          return Utility.customCard(productList[index],productList[index],context);
                         },
                       ),
                     );
@@ -248,16 +236,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: productList.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return InkWell(
-                            child: Utility.customCard(productList[index]),
-                            onTap: () {
-                              Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) => ProductScreen(
-                                          productList: productList[index])));
-                            },
-                          );
+                          return Utility.customCard(productList[index],productList[index],context);
                         },
                       ),
                     );
@@ -275,7 +254,7 @@ class _HomeScreenState extends State<HomeScreen> {
                         itemCount: productList.length,
                         scrollDirection: Axis.horizontal,
                         itemBuilder: (context, index) {
-                          return Utility.customCard(productList[index]);
+                          return Utility.customCard(productList[index],productList[index],context);
                         },
                       ),
                     );

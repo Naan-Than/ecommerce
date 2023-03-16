@@ -62,7 +62,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 Positioned(
                   bottom: 0.0,
                   child: Container(
-                    height: MediaQuery.of(context).size.height * .5,
+                    height: MediaQuery.of(context).size.height * .55,
                     width: MediaQuery.of(context).size.width,
                     decoration: const BoxDecoration(
                       color: Colors.white,
@@ -71,111 +71,111 @@ class _LoginScreenState extends State<LoginScreen> {
                         topRight: Radius.circular(30.0),
                       ),
                     ),
-                    child: Column(
-                      children: [
-                        const SizedBox(
-                          height: 8.0,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.all(20.0),
-                          child: Row(
-                            children: const [
-                              Expanded(
-                                  child: Divider(
-                                    thickness: 1,
-                                    color: Colors.black26,
-                                  )),
-                              Text(
-                                "  SIGN IN  ",
-                                style: TextStyle(
-                                    color: Colors.pinkAccent,
-                                    fontSize: 20,
-                                    fontWeight: FontWeight.bold),
-                              ),
-                              Expanded(
-                                  child: Divider(
-                                    thickness: 1,
-                                    color: Colors.black26,
-                                  )),
-                            ],
+                    child: SingleChildScrollView(
+                      child: Column(
+                        children: [
+                          const SizedBox(
+                            height: 8.0,
                           ),
-                        ),
-                        const SizedBox(
-                          height: 6,
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.symmetric(vertical: 18.0),
-                          child: Column(
-                            children: [
-                              TextInputField.customTextForm(
-                                  TextInputType.emailAddress,
-                                  "Email",
-                                  false,
-                                  null,
-                                  "bruce.wayne@gmail.com",
-                                      (email){
-                                    if(email.isEmpty) {
-                                      return "Please Enter Email";
-                                    } else {
+                          Padding(
+                            padding: const EdgeInsets.all(20.0),
+                            child: Row(
+                              children: [
+                                const Expanded(
+                                    child: Divider(
+                                      thickness: 1,
+                                      color: Colors.black26,
+                                    )),
+                                const Text(
+                                  "  SIGN IN  ",
+                                  style: TextStyle(
+                                      color: Colors.pinkAccent,
+                                      fontSize: 20,
+                                      fontWeight: FontWeight.bold),
+                                ),
+                                const Expanded(
+                                    child: Divider(
+                                      thickness: 1,
+                                      color: Colors.black26,
+                                    )),
+                              ],
+                            ),
+                          ),
+                          const SizedBox(
+                            height: 6,
+                          ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(vertical: 18.0),
+                            child: Column(
+                              children: [
+                                TextInputField.customTextForm(
+                                    TextInputType.emailAddress,
+                                    "Email",
+                                    false,
+                                    null,
+                                    "bruce.wayne@gmail.com",
+                                        (email){
+                                      if(email.isEmpty)
+                                        return "Please Enter Email";
+                                      else
+                                        return null;
+                                    },
+                                    email),
+                                const SizedBox(
+                                  height: 12,
+                                ),
+                                TextInputField.customTextForm(
+                                    TextInputType.text,
+                                    "Password",
+                                    true,
+                                    const Icon(Icons.remove_red_eye_outlined),
+                                    null,
+                                        (pass){
+                                      if(pass.isEmpty)
+                                        return "Please Enter Password";
+                                      else if (pass.length<8)
+                                        return "Password lenth is low";
                                       return null;
-                                    }
-                                  },
-                                  email),
-                              const SizedBox(
-                                height: 12,
-                              ),
-                              TextInputField.customTextForm(
-                                  TextInputType.text,
-                                  "Password",
-                                  true,
-                                  const Icon(Icons.remove_red_eye_outlined),
-                                  null,
-                                      (pass){
-                                    if(pass.isEmpty) {
-                                      return "Please Enter Password";
-                                    } else if (pass.length<8) {
-                                      return "Password length is low";
-                                    }
-                                    return null;
-                                  },
-                                  password
-                                  ),
-                            ],
+                                    },
+                                    password
+                                    ),
+                              ],
+                            ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 8,
-                        ),
-                        InkWell(
-                          onTap: () {
-                            if(formKey.currentState!.validate()){
-                              signIn(context);
-                            }},
-                          child: Container(
-                            decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(40.0),
-                                color: Colors.pinkAccent),
-                            child: const Padding(
-                              padding: EdgeInsets.symmetric(
-                                  vertical: 17.0, horizontal: 78),
-                              child: Text(
-                                "SIGN IN",
-                                style: TextStyle(fontSize: 18, color: Colors.white),
+                          const SizedBox(
+                            height: 8,
+                          ),
+                          InkWell(
+                            onTap: () {
+                              if(formKey.currentState!.validate()){
+                                signIn(context);
+                              }},
+                            child: Container(
+                              decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(40.0),
+                                  color: Colors.pinkAccent),
+                              child: const Padding(
+                                padding: EdgeInsets.symmetric(
+                                    vertical: 17.0, horizontal: 78),
+                                child: Text(
+                                  "SIGN IN",
+                                  style: TextStyle(fontSize: 18, color: Colors.white),
+                                ),
                               ),
                             ),
                           ),
-                        ),
-                        const SizedBox(
-                          height: 1.0,
-                        ),
-                        TextButton(
-                          onPressed: () {},
-                          child: const Text(
-                            "Forgot Password?",
-                            style: TextStyle(fontSize: 18, color: Colors.grey),
+                          const SizedBox(
+                            height: 1.0,
                           ),
-                        ),
-                      ],
+                          TextButton(
+                            onPressed: () {},
+                            child: const Text(
+                              "Forgot Password?",
+                              style: TextStyle(fontSize: 18, color: Colors.grey),
+                            ),
+                          ),
+                        ],
+                      ),
                     ),
                   ),
                 ),

@@ -18,6 +18,7 @@ class _MerchantScreenState extends State<MerchantScreen> {
   TextEditingController productPrice = TextEditingController();
 
   late File? _image;
+  bool _load = false;
 
   Future imagePicker() async {
     final picker = ImagePicker();
@@ -25,6 +26,7 @@ class _MerchantScreenState extends State<MerchantScreen> {
     setState(() {
       if (pick != null) {
         _image = File(pick.path);
+        _load = false;
       }
     });
   }
@@ -38,19 +40,21 @@ class _MerchantScreenState extends State<MerchantScreen> {
     await reference.putFile(_image!);
     url = await reference.getDownloadURL();
 
-    var docRef =
-        await FirebaseFirestore.instance.collection("Products").add({});
-    String docId = docRef.id;
+
+    var docRef=await FirebaseFirestore.instance.collection("Products").add({
+
+      });
+    String docId=docRef.id;
     await FirebaseFirestore.instance.collection("Products").doc(docId).set({
-      "pID": docId,
+      "pID":docId,
       "name": productTitle.text,
       "price": productPrice.text,
       "description": productDescription.text,
       "image": url,
+
     }).whenComplete(() => clearForm());
   }
-
-  void clearForm() {
+  void clearForm(){
     productDescription.clear();
     productPrice.clear();
     productTitle.clear();
@@ -81,9 +85,9 @@ class _MerchantScreenState extends State<MerchantScreen> {
                 ),
                 const Center(
                     child: Text(
-                  "Enter the Product Details",
-                  style: TextStyle(color: Colors.black, fontSize: 18),
-                )),
+                      "Enter the Product Details",
+                      style: TextStyle(color: Colors.black, fontSize: 18),
+                    )),
                 const SizedBox(
                   height: 20,
                 ),

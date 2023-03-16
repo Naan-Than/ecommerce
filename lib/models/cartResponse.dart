@@ -12,7 +12,6 @@ class CartResponse {
     required this.name,
     required this.price,
     required this.image,
-    required this.description,
     required this.quantity,
 
   });
@@ -21,7 +20,6 @@ class CartResponse {
   String name;
   double price;
   String image;
-  String description;
   double quantity;
 
   factory CartResponse.fromJson(Map<String, dynamic> json) => CartResponse(
@@ -29,7 +27,6 @@ class CartResponse {
     name: json["name"],
     price: json["price"],
     image: json["image"],
-    description: json["description"],
     quantity: json[" quantity"],
   );
 
@@ -40,7 +37,6 @@ class CartResponse {
       name: data?['title'] ?? '',
       price: double.parse(data?['price']),
       image: data?['image'] ?? '',
-      description:data?['description']??'',
       quantity: double.parse(data?['quantity']),
     );
   }
@@ -49,7 +45,6 @@ class CartResponse {
     "name": name,
     "price": price,
     "image": image,
-    "description": description,
     "quantity": quantity,
 
   };

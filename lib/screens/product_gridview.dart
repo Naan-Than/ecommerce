@@ -1,6 +1,5 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:ecommerce/models/ProductsResponse.dart';
-import 'package:ecommerce/screens/product_screen.dart';
 import 'package:ecommerce/utility.dart';
 import 'package:flutter/material.dart';
 
@@ -19,7 +18,6 @@ class _ProductGridViewState extends State<ProductGridView> {
     await FirebaseFirestore.instance.collection('Products').get();
     var data =
     documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
-    print(productList.length);
     setState(() {
       productList.addAll(data);
     });
@@ -38,17 +36,37 @@ class _ProductGridViewState extends State<ProductGridView> {
       ),
       body: Column(
         children: [
-          GridView.builder(gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(crossAxisCount: 2),
-              itemBuilder: (context, index) {
-                return InkWell(
-                  child: Utility.customCard(productList[index]),
-                  onTap: (){
-                    Navigator.push(context,
-                        MaterialPageRoute(builder: (context)=>ProductScreen(productList: productList[index])));
-                  },
-                );
-              },
+          SizedBox(
+            height: 220,
+            child: ListView.builder(
+              itemCount: 3,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context,index){
+                  return Utility.customCard(productList[index],productList[index],context);
+                }),
           ),
+          SizedBox(height: 10,),
+          SizedBox(
+            height: 220,
+            child: ListView.builder(
+              itemCount: 3,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context,index){
+                  return Utility.customCard(productList[index],productList[index],context);
+                }),
+          ),
+          SizedBox(
+            height: 220,
+            child: ListView.builder(
+              itemCount: 3,
+                shrinkWrap: true,
+                scrollDirection: Axis.horizontal,
+                itemBuilder: (context,index){
+                  return Utility.customCard(productList[index],productList[index],context);
+                }),
+          )
         ],
       ),
     );
