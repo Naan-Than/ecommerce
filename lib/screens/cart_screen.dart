@@ -57,85 +57,89 @@ class _CartScreenState extends State<CartScreen> {
                   scrollDirection: Axis.vertical,
                   itemCount: cartProductList.length,
                   itemBuilder: (context, index) {
-                    return Padding(
-                      padding: const EdgeInsets.symmetric(
-                          horizontal: 8.0, vertical: 4.0),
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(8),
-                        ),
-                        height: 130,
-                        width: MediaQuery.of(context).size.width,
-                        child: Row(
-                          children: [
-                            Padding(
-                              padding: const EdgeInsets.all(14.0),
-                              child: Image.network(cartProductList[index].image
-                                //'https://i.postimg.cc/rw8CS9BZ/char11.jpg',
+                    if (cartProductList.isEmpty){
+                      return const Text("no item found");
+                    }else{
+                      return Padding(
+                        padding: const EdgeInsets.symmetric(
+                            horizontal: 8.0, vertical: 4.0),
+                        child: Container(
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(8),
+                          ),
+                          height: 130,
+                          width: MediaQuery.of(context).size.width,
+                          child: Row(
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.all(14.0),
+                                child: Image.network(cartProductList[index].image
+                                  //'https://i.postimg.cc/rw8CS9BZ/char11.jpg',
+                                ),
                               ),
-                            ),
-                            const SizedBox(
-                              width: 12.0,
-                            ),
-                            Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Padding(
-                                  padding: const EdgeInsets.symmetric(
-                                      horizontal: 8.0, vertical: 4.0),
-                                  child: Text(cartProductList[index].name,
-                                    style: const TextStyle(
-                                        color: Colors.black, fontSize: 22),
-                                  ),
-                                ),
-                                Padding(
-                                  padding:
-                                  const EdgeInsets.symmetric(horizontal: 8.0),
-                                  child: Text(
-                                    (cartProductList[index].price * cartProductList[index].quantity).toString(),
-                                    style: const TextStyle(
-                                        color: Colors.black54, fontSize: 16),
-                                  ),
-                                ),
-                                const SizedBox(
-                                  height: 0,
-                                ),
-                                Row(
-                                  children: [
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          cartProductList[index].quantity = cartProductList[index].quantity - 1;
-                                        });
-                                      },
-                                      icon: const Icon(
-                                          Icons.remove_circle_outline,
-                                          color: Colors.black54),
-                                    ),
-                                    Text(
-                                      cartProductList[index].quantity.toString(),
+                              const SizedBox(
+                                width: 12.0,
+                              ),
+                              Column(
+                                crossAxisAlignment: CrossAxisAlignment.start,
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Padding(
+                                    padding: const EdgeInsets.symmetric(
+                                        horizontal: 8.0, vertical: 4.0),
+                                    child: Text(cartProductList[index].name,
                                       style: const TextStyle(
-                                          color: Colors.black, fontSize: 16),
+                                          color: Colors.black, fontSize: 22),
                                     ),
-                                    IconButton(
-                                      onPressed: () {
-                                        setState(() {
-                                          cartProductList[index].quantity = cartProductList[index].quantity + 1;
-                                        });
-                                      },
-                                      icon: const Icon(Icons.add_circle_outline,
-                                          color: Colors.black54),
+                                  ),
+                                  Padding(
+                                    padding:
+                                    const EdgeInsets.symmetric(horizontal: 8.0),
+                                    child: Text(
+                                      (cartProductList[index].price * cartProductList[index].quantity).toString(),
+                                      style: const TextStyle(
+                                          color: Colors.black54, fontSize: 16),
                                     ),
-                                  ],
-                                ),
-                              ],
-                            ),
-                          ],
+                                  ),
+                                  const SizedBox(
+                                    height: 0,
+                                  ),
+                                  Row(
+                                    children: [
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            cartProductList[index].quantity = cartProductList[index].quantity - 1;
+                                          });
+                                        },
+                                        icon: const Icon(
+                                            Icons.remove_circle_outline,
+                                            color: Colors.black54),
+                                      ),
+                                      Text(
+                                        cartProductList[index].quantity.toString(),
+                                        style: const TextStyle(
+                                            color: Colors.black, fontSize: 16),
+                                      ),
+                                      IconButton(
+                                        onPressed: () {
+                                          setState(() {
+                                            cartProductList[index].quantity = cartProductList[index].quantity + 1;
+                                          });
+                                        },
+                                        icon: const Icon(Icons.add_circle_outline,
+                                            color: Colors.black54),
+                                      ),
+                                    ],
+                                  ),
+                                ],
+                              ),
+                            ],
+                          ),
                         ),
-                      ),
-                    );
+                      );
+                    }
                   }),
             ),
             const SizedBox(
@@ -156,6 +160,7 @@ class _CartScreenState extends State<CartScreen> {
                   letterSpacing: 0.8,
                   fontSize: 24),
             ),
+
           ],
         ),
       ),

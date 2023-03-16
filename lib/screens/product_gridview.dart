@@ -19,6 +19,7 @@ class _ProductGridViewState extends State<ProductGridView> {
     await FirebaseFirestore.instance.collection('Products').get();
     var data =
     documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
+    print(productList.length);
     setState(() {
       productList.addAll(data);
     });
@@ -46,16 +47,7 @@ class _ProductGridViewState extends State<ProductGridView> {
                         MaterialPageRoute(builder: (context)=>ProductScreen(productList: productList[index])));
                   },
                 );
-
               },
-
-          ),
-          GridView.count(
-            crossAxisSpacing: 30.0,
-              crossAxisCount: 2,
-            children: [
-
-            ],
           ),
         ],
       ),

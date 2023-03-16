@@ -86,7 +86,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     IconButton(
                       onPressed: () {
                         removeQuantity();
-                        print(quantity);
                         setState(() {});
                       },
                       icon: const Icon(Icons.remove_circle_outline,
@@ -99,7 +98,6 @@ class _ProductScreenState extends State<ProductScreen> {
                     IconButton(
                       onPressed: () {
                         addQuantity();
-                        print(quantity);
                         setState(() {});
                       },
                       icon: const Icon(Icons.add_circle_outline,
@@ -137,7 +135,6 @@ class _ProductScreenState extends State<ProductScreen> {
               ),
               onTap: () {
                 cartAdd();
-                print(widget.productList.price * quantity);
               },
             ),
           ],

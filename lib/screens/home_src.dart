@@ -32,6 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
     await FirebaseFirestore.instance.collection('Products').get();
     var data =
     documentSnapshot.docs.map((e) => ProductsResponse.fromSnapshot(e));
+    print(data.length);
     setState(() {
       productList.addAll(data);
     });

@@ -23,7 +23,7 @@ class _LoginScreenState extends State<LoginScreen> {
     }).then((authUser) {
       // await FirebaseAuth.instance.currentUser.uid
       Navigator.push(context,
-          MaterialPageRoute(builder: (context)=>HomePage()));
+          MaterialPageRoute(builder: (context)=>const HomePage()));
     });
   }
   @override
@@ -37,7 +37,7 @@ class _LoginScreenState extends State<LoginScreen> {
             child: Stack(
               children: [
                 Container(
-                  decoration: BoxDecoration(
+                  decoration: const BoxDecoration(
                     image: DecorationImage(
                         image: NetworkImage(
                             'https://i.postimg.cc/MpCR4S1N/IMG-20221118-102823-1.jpg'),
@@ -64,7 +64,7 @@ class _LoginScreenState extends State<LoginScreen> {
                   child: Container(
                     height: MediaQuery.of(context).size.height * .5,
                     width: MediaQuery.of(context).size.width,
-                    decoration: BoxDecoration(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       borderRadius: BorderRadius.only(
                         topLeft: Radius.circular(30.0),
@@ -73,13 +73,13 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     child: Column(
                       children: [
-                        SizedBox(
+                        const SizedBox(
                           height: 8.0,
                         ),
                         Padding(
                           padding: const EdgeInsets.all(20.0),
                           child: Row(
-                            children: [
+                            children: const [
                               Expanded(
                                   child: Divider(
                                     thickness: 1,
@@ -100,7 +100,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 6,
                         ),
                         Padding(
@@ -114,26 +114,28 @@ class _LoginScreenState extends State<LoginScreen> {
                                   null,
                                   "bruce.wayne@gmail.com",
                                       (email){
-                                    if(email.isEmpty)
+                                    if(email.isEmpty) {
                                       return "Please Enter Email";
-                                    else
+                                    } else {
                                       return null;
+                                    }
                                   },
                                   email),
-                              SizedBox(
+                              const SizedBox(
                                 height: 12,
                               ),
                               TextInputField.customTextForm(
                                   TextInputType.text,
                                   "Password",
                                   true,
-                                  Icon(Icons.remove_red_eye_outlined),
+                                  const Icon(Icons.remove_red_eye_outlined),
                                   null,
                                       (pass){
-                                    if(pass.isEmpty)
+                                    if(pass.isEmpty) {
                                       return "Please Enter Password";
-                                    else if (pass.length<8)
-                                      return "Password lenth is low";
+                                    } else if (pass.length<8) {
+                                      return "Password length is low";
+                                    }
                                     return null;
                                   },
                                   password
@@ -141,7 +143,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ],
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 8,
                         ),
                         InkWell(
@@ -163,7 +165,7 @@ class _LoginScreenState extends State<LoginScreen> {
                             ),
                           ),
                         ),
-                        SizedBox(
+                        const SizedBox(
                           height: 1.0,
                         ),
                         TextButton(

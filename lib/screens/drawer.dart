@@ -1,8 +1,5 @@
-import 'package:ecommerce/screens/Starting_screen.dart';
 import 'package:ecommerce/screens/cart_screen.dart';
-import 'package:ecommerce/screens/login_screen.dart';
 import 'package:ecommerce/screens/merchant_screen.dart';
-import 'package:ecommerce/screens/product_screen.dart';
 import 'package:ecommerce/screens/profile_Screen.dart';
 import 'package:ecommerce/screens/start_screen.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -21,7 +18,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
   void signOut() async {
     await FirebaseAuth.instance.signOut();
     Navigator.push(
-        context, MaterialPageRoute(builder: (context) => StartScreen()));
+        context, MaterialPageRoute(builder: (context) => const StartScreen()));
   }
 
   @override
@@ -44,7 +41,7 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     Navigator.push(
                         context,
                         MaterialPageRoute(
-                            builder: (context) => ProfileScreen()));
+                            builder: (context) => const ProfileScreen()));
                   },
                   child: Padding(
                     padding: const EdgeInsets.only(top: 25.0, left: 40.0),
@@ -176,14 +173,14 @@ class _DrawerScreenState extends State<DrawerScreen> {
                     ListTile(
                       onTap: (){
                         Navigator.push(context,
-                            MaterialPageRoute(builder: (context)=>MerchantScreen()));
+                            MaterialPageRoute(builder: (context)=>const MerchantScreen()));
                       },
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.sell_outlined,
                         color: Colors.white,
                         size: 24,
                       ),
-                      title: Text(
+                      title: const Text(
                         "Merchant",
                         style: TextStyle(
                             color: Colors.white,
@@ -192,12 +189,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       ),
                     ),
                     ListTile(
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.help_outline,
                         color: Colors.white,
                         size: 24,
                       ),
-                      title: Text(
+                      title: const Text(
                         "Help",
                         style: TextStyle(
                             color: Colors.white,
@@ -212,12 +209,12 @@ class _DrawerScreenState extends State<DrawerScreen> {
                       },
                     ),
                     ListTile(
-                      leading: Icon(
+                      leading: const Icon(
                         Icons.login_outlined,
                         color: Colors.white,
                         size: 24,
                       ),
-                      title: Text(
+                      title: const Text(
                         "Logout",
                         style: TextStyle(
                             color: Colors.white,
