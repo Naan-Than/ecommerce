@@ -87,7 +87,9 @@ class _ProductScreenState extends State<ProductScreen> {
                       onPressed: () {
                         removeQuantity();
                         print("$quantity");
-                        setState(() {});
+                        setState(() {
+
+                        });
                       },
                       icon: const Icon(Icons.remove_circle_outline,
                           color: Colors.white),
@@ -98,9 +100,10 @@ class _ProductScreenState extends State<ProductScreen> {
                     ),
                     IconButton(
                       onPressed: () {
-                        addQuantity();
                         print("$quantity");
-                        setState(() {});
+                        setState(() {
+                          quantity=quantity +1;
+                        });
                       },
                       icon: const Icon(Icons.add_circle_outline,
                           color: Colors.white),

@@ -20,7 +20,7 @@ class CartResponse {
   String name;
   double price;
   String image;
-  double quantity;
+  int quantity;
 
   factory CartResponse.fromJson(Map<String, dynamic> json) => CartResponse(
     id: json["id"],
@@ -35,9 +35,9 @@ class CartResponse {
     return CartResponse(
       id: snap.id,
       name: data?['title'] ?? '',
-      price: double.parse(data?['price']),
+      price: data?['price'],
       image: data?['image'] ?? '',
-      quantity: double.parse(data?['quantity']),
+      quantity: data?['quantity'],
     );
   }
 
@@ -46,6 +46,5 @@ class CartResponse {
     "price": price,
     "image": image,
     "quantity": quantity,
-
   };
 }

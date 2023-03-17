@@ -31,6 +31,13 @@ class _CartScreenState extends State<CartScreen> {
   }
 
   @override
+  void initState() {
+    // TODO: implement initState
+    super.initState();
+    fetchData();
+  }
+
+  @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Colors.white,
@@ -50,101 +57,97 @@ class _CartScreenState extends State<CartScreen> {
             const SizedBox(
               height: 8.0,
             ),
-            FutureBuilder(
-              future: fetchData(),
-                builder: (context,snapshot){
-                return SizedBox(
-                  height: MediaQuery.of(context).size.height / 1.4,
-                  width: MediaQuery.of(context).size.width,
-                  child: cartProductList.isNotEmpty ? ListView.builder(
-                      shrinkWrap: true,
-                      scrollDirection: Axis.vertical,
-                      itemCount: cartProductList.length,
-                      itemBuilder: (context, index) {
-                        {
-                          return Padding(
-                            padding: const EdgeInsets.symmetric(
-                                horizontal: 8.0, vertical: 4.0),
-                            child: Container(
-                              decoration: BoxDecoration(
-                                color: Colors.white,
-                                borderRadius: BorderRadius.circular(8),
+        SizedBox(
+          height: MediaQuery.of(context).size.height / 1.4,
+          width: MediaQuery.of(context).size.width,
+          child: cartProductList.isNotEmpty ? ListView.builder(
+              shrinkWrap: true,
+              scrollDirection: Axis.vertical,
+              itemCount: cartProductList.length,
+              itemBuilder: (context, index) {
+                {
+                  return Padding(
+                    padding: const EdgeInsets.symmetric(
+                        horizontal: 8.0, vertical: 4.0),
+                    child: Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(8),
+                      ),
+                      height: 130,
+                      width: MediaQuery.of(context).size.width,
+                      child: Row(
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.all(14.0),
+                            child: Image.network(cartProductList[index].image
+                              //'https://i.postimg.cc/rw8CS9BZ/char11.jpg',
+                            ),
+                          ),
+                          const SizedBox(
+                            width: 12.0,
+                          ),
+                          Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Padding(
+                                padding: const EdgeInsets.symmetric(
+                                    horizontal: 8.0, vertical: 4.0),
+                                child: Text(cartProductList[index].name,
+                                  style: const TextStyle(
+                                      color: Colors.black, fontSize: 22),
+                                ),
                               ),
-                              height: 130,
-                              width: MediaQuery.of(context).size.width,
-                              child: Row(
+                              Padding(
+                                padding:
+                                const EdgeInsets.symmetric(horizontal: 8.0),
+                                child: Text(
+                                  (cartProductList[index].price * cartProductList[index].quantity).toString(),
+                                  style: const TextStyle(
+                                      color: Colors.black54, fontSize: 16),
+                                ),
+                              ),
+                              const SizedBox(
+                                height: 0,
+                              ),
+                              Row(
                                 children: [
-                                  Padding(
-                                    padding: const EdgeInsets.all(14.0),
-                                    child: Image.network(cartProductList[index].image
-                                      //'https://i.postimg.cc/rw8CS9BZ/char11.jpg',
-                                    ),
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        cartProductList[index].quantity = cartProductList[index].quantity - 1;
+                                      });
+                                    },
+                                    icon: const Icon(
+                                        Icons.remove_circle_outline,
+                                        color: Colors.black54),
                                   ),
-                                  const SizedBox(
-                                    width: 12.0,
+                                  Text(
+                                    cartProductList[index].quantity.toString(),
+                                    style: const TextStyle(
+                                        color: Colors.black, fontSize: 16),
                                   ),
-                                  Column(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      Padding(
-                                        padding: const EdgeInsets.symmetric(
-                                            horizontal: 8.0, vertical: 4.0),
-                                        child: Text(cartProductList[index].name,
-                                          style: const TextStyle(
-                                              color: Colors.black, fontSize: 22),
-                                        ),
-                                      ),
-                                      Padding(
-                                        padding:
-                                        const EdgeInsets.symmetric(horizontal: 8.0),
-                                        child: Text(
-                                          (cartProductList[index].price * cartProductList[index].quantity).toString(),
-                                          style: const TextStyle(
-                                              color: Colors.black54, fontSize: 16),
-                                        ),
-                                      ),
-                                      const SizedBox(
-                                        height: 0,
-                                      ),
-                                      Row(
-                                        children: [
-                                          IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                cartProductList[index].quantity = cartProductList[index].quantity - 1;
-                                              });
-                                            },
-                                            icon: const Icon(
-                                                Icons.remove_circle_outline,
-                                                color: Colors.black54),
-                                          ),
-                                          Text(
-                                            cartProductList[index].quantity.toString(),
-                                            style: const TextStyle(
-                                                color: Colors.black, fontSize: 16),
-                                          ),
-                                          IconButton(
-                                            onPressed: () {
-                                              setState(() {
-                                                cartProductList[index].quantity = cartProductList[index].quantity + 1;
-                                              });
-                                            },
-                                            icon: const Icon(Icons.add_circle_outline,
-                                                color: Colors.black54),
-                                          ),
-                                        ],
-                                      ),
-                                    ],
+                                  IconButton(
+                                    onPressed: () {
+                                      setState(() {
+                                        cartProductList[index].quantity = cartProductList[index].quantity + 1;
+                                      });
+                                    },
+                                    icon: const Icon(Icons.add_circle_outline,
+                                        color: Colors.black54),
                                   ),
                                 ],
                               ),
-                            ),
-                          );
-                        }
-                      }) : const Center(child: Text("no item found",style: TextStyle(color: Colors.black,fontSize: 18),)),
-                );
-                }),
+                            ],
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+              }) : const Center(child: Text("no item found",style: TextStyle(color: Colors.black,fontSize: 18),)),
+        ),
             const SizedBox(
               height: 14.0,
             ),
